@@ -2,9 +2,10 @@
 
 A simple state propagation tool for React. It takes advantage of 
 [components that are pure](http://facebook.github.io/react/docs/pure-render-mixin.html)
-to significantly simplify event subscription when propagate changes in the data layer.
+to significantly simplify event subscription when propagating changes 
+in the data layer.
 
-Diode is an event emitter with one event. By including the `Stateful`
+**Diode is an event emitter with one event**. By including the `Stateful`
 mixin, an expected `getState` method is called every time the Diode
 publishes a change.
 
