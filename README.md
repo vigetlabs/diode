@@ -40,7 +40,7 @@ var Component = React.createClass({
 Then in your stores, execute 'publish' on the Diode when you want to
 propagate a change:
 
-```
+```javascript
 var Diode = require('diode')
 var _data = []
 
