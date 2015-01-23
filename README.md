@@ -3,9 +3,13 @@
 A simple state propagation tool for React. It works very well when
 [components are pure](http://facebook.github.io/react/docs/pure-render-mixin.html).
 
-Diode is an event emitter with one event. By including the Diode
+Diode is an event emitter with one event. By including the `Stateful`
 mixin, an expected `getState` method is called every time the Diode
 publishes a change.
+
+It is also quite small (see [API](#api)). We found ourselves something
+similar to it on several projects and decided it was better to keep it
+in one place.
 
 ---
 
@@ -54,3 +58,20 @@ MyStore.add = function(record) {
 ```
 
 And that's it!
+
+## API
+
+### Diode
+
+- `unsubscribe`: Remove a callback. If only using the `Stateful` mixin
+  this probably never needs to be called
+- `subscribe`: Add a callback. If only using the `Stateful` mixin
+  this probably never needs to be called
+- `publish`: Propagate a change. Call this whenever a data store of
+  some kind changes (leaning on smart `shouldComponentUpdate` methods
+  within your React component tree)
+
+### Stateful
+
+- `getState`: This method is called by `Stateful` whenever the `Diode`
+  executes `publish` to update the state of a component. **It is required.**
