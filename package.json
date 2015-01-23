@@ -1,0 +1,43 @@
+{
+  "name": "diode",
+  "version": "0.0.0",
+  "description": "A simple state propagation tool for Flux/React apps",
+  "main": "diode.js",
+  "scripts": {
+    "test": "karma start",
+    "coveralls": "CONTINUOUS_INTEGRATION=true npm test && coveralls < coverage/report-lcov/lcov.info"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vigetlabs/diode.git"
+  },
+  "keywords": [],
+  "contributors": [
+    {
+      "name": "Nate Hunzaker",
+      "email": "nate.hunzaker@viget.com",
+      "url": "http://viget.com"
+    }
+  ],
+  "license": "MIT",
+  "bugs": "https://github.com/vigetlabs/diode/issues",
+  "homepage": "https://github.com/vigetlabs/diode",
+  "devDependencies": {
+    "6to5-loader": "^2.0.0",
+    "istanbul": "^0.3.5",
+    "istanbul-instrumenter-loader": "^0.1.2",
+    "karma": "^0.12.31",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-cli": "0.0.4",
+    "karma-coverage": "^0.2.7",
+    "karma-firefox-launcher": "^0.1.4",
+    "karma-mocha": "^0.1.10",
+    "karma-nyan-reporter": "0.0.50",
+    "karma-sinon-chai": "^0.2.0",
+    "karma-webpack": "^1.5.0",
+    "webpack": "^1.5.3"
+  },
+  "peerDependencies": {
+    "react": ">= 0.12.1"
+  }
+}
