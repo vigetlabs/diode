@@ -35,7 +35,8 @@
     "karma-nyan-reporter": "0.0.50",
     "karma-sinon-chai": "^0.2.0",
     "karma-webpack": "^1.5.0",
-    "webpack": "^1.5.3"
+    "webpack": "^1.5.3",
+    "react": ">= 0.12.1"
   },
   "peerDependencies": {
     "react": ">= 0.12.1"
