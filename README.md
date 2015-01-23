@@ -13,3 +13,41 @@ publishes a change.
 [![Coverage Status](https://coveralls.io/repos/vigetlabs/diode/badge.svg)](https://coveralls.io/r/vigetlabs/diode)
 
 ---
+
+## Usage
+
+First include the `Stateful` mixin into a component, and provide a
+`getState` method:
+
+```javascript
+var React    = require('react');
+var Stateful = require('diode/stateful');
+var MyStore  = require('./myStore');
+
+var Component = React.createClass({
+  mixins: [ Stateful ],
+  getState: function() {
+    return {
+      items: MyStore.all()
+    }
+  },
+  render: function() {
+    // render
+  }
+})
+```
+
+Then in your stores, execute 'publish' on the Diode when you want to
+propagate a change:
+
+```
+var Diode = require('diode')
+var _data = []
+
+MyStore.add = function(record) {
+  _data = _data.concat(record)
+  Diode.publish()
+}
+```
+
+And that's it!
