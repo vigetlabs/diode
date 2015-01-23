@@ -1,6 +1,3 @@
-./addons
-example
-lib
-src
-webpack.config.js
-webpack.example.config.js
+tests
+karma.conf.js
+coverage
