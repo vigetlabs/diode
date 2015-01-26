@@ -1,5 +1,5 @@
-var Diode     = require('../diode');
-var invariant = require('react/lib/invariant');
+var Diode     = require('./diode');
+var invariant = require('./invariant');
 
 var Stateful = {
 

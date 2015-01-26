@@ -4,7 +4,7 @@
  * that state has changed.
  */
 
-var invariant  = require('react/lib/invariant')
+var invariant  = require('./invariant')
 var _callbacks = []
 
 var Diode = {

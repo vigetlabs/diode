@@ -1,15 +1,17 @@
 # Diode
 
-A simple state propagation tool for React. It takes advantage of 
+A simple state propagation tool for React. It takes advantage of
 [components that are pure](http://facebook.github.io/react/docs/pure-render-mixin.html)
-to significantly simplify event subscription when propagating changes 
+to significantly simplify event subscription when propagating changes
 in the data layer.
+
+Diode has no dependencies.
 
 **Diode is an event emitter with one event**. By including the `Stateful`
 mixin, an expected `getState` method is called every time the Diode
 publishes a change.
 
-It is also quite small (see [API](#api)). We found ourselves building 
+It is also quite small (see [API](#api)). We found ourselves building
 something similar to it on several projects and decided it was better
 to keep it in one place.
 
