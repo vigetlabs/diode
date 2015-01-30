@@ -1,6 +1,16 @@
 describe('Diode', function() {
   var Diode = require('diode')
 
+  it ('does not flush if there are no callbacks', function() {
+    let spy = sinon.spy(window, 'requestAnimationFrame')
+
+    Diode.publish();
+
+    spy.should.not.have.been.called
+
+    spy.restore();
+  })
+
   it ('can subscribe callbacks', function(done) {
     Diode.subscribe(done);
     Diode.publish();
