@@ -6,6 +6,17 @@
 
 var invariant  = require('./invariant')
 var _callbacks = []
+var _tick      = null;
+
+/**
+ * Callbacks are eventually executed, Diode does not promise
+ * immediate consistency so that state propagation can be batched
+ */
+var _flush = function() {
+  for (var i = 0, length = _callbacks.length; i < length; i++) {
+    _callbacks[i]()
+  }
+}
 
 var Diode = {
 
@@ -35,9 +46,8 @@ var Diode = {
    * Trigger every callback in the Set
    */
   publish: function() {
-    _callbacks.forEach(function(callback) {
-      callback()
-    })
+    cancelAnimationFrame(_tick)
+    _tick = requestAnimationFrame(_flush)
   }
 
 }

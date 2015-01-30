@@ -1,6 +1,7 @@
 # Diode
 
-A simple state propagation tool for React. It takes advantage of
+A simple, eventually consistent, state propagation tool for React. It
+takes advantage of
 [components that are pure](http://facebook.github.io/react/docs/pure-render-mixin.html)
 to significantly simplify event subscription when propagating changes
 in the data layer.
@@ -10,6 +11,24 @@ Diode has no dependencies.
 **Diode is an event emitter with one event**. By including the `Stateful`
 mixin, an expected `getState` method is called every time the Diode
 publishes a change.
+
+**Diode batches event subscriptions using `requestAnimationFrame`**. In
+short, this means that sequential publications will be clumped:
+
+```javascript
+Diode.subscribe(callback)
+
+for (var i = 1000; i > 0; i--) {
+  Diode.publish()
+}
+
+// callback will only fire once
+```
+
+This means that state changes which would activate `Diode.publish`
+multiple times, such as an action which affects multiple data stores,
+will trigger once. This should improve efficiency and simplify actions
+such as merging records.
 
 It is also quite small (see [API](#api)). We found ourselves building
 something similar to it on several projects and decided it was better
