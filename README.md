@@ -1,5 +1,3 @@
----
-
 [![NPM](https://nodei.co/npm/diode.png)](https://npmjs.org/package/diode)
 [![Build Status](https://travis-ci.org/vigetlabs/diode.png?branch=master)](https://travis-ci.org/vigetlabs/diode)
 [![Coverage Status](https://coveralls.io/repos/vigetlabs/diode/badge.svg)](https://coveralls.io/r/vigetlabs/diode)
