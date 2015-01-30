@@ -46,8 +46,10 @@ var Diode = {
    * Trigger every callback in the Set
    */
   publish: function() {
-    cancelAnimationFrame(_tick)
-    _tick = requestAnimationFrame(_flush)
+    if (_callbacks.length) {
+      cancelAnimationFrame(_tick)
+      _tick = requestAnimationFrame(_flush)
+    }
   }
 
 }
