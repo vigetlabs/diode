@@ -1,4 +1,10 @@
-# Diode
+---
+
+[![NPM](https://nodei.co/npm/diode.png)](https://npmjs.org/package/diode)
+[![Build Status](https://travis-ci.org/vigetlabs/diode.png?branch=master)](https://travis-ci.org/vigetlabs/diode)
+[![Coverage Status](https://coveralls.io/repos/vigetlabs/diode/badge.svg)](https://coveralls.io/r/vigetlabs/diode)
+
+---
 
 A simple, eventually consistent, state propagation tool for React. It
 takes advantage of
@@ -33,13 +39,6 @@ such as merging records.
 It is also quite small (see [API](#api)). We found ourselves building
 something similar to it on several projects and decided it was better
 to keep it in one place.
-
----
-
-[![Build Status](https://travis-ci.org/vigetlabs/diode.png?branch=master)](https://travis-ci.org/vigetlabs/diode)
-[![Coverage Status](https://coveralls.io/repos/vigetlabs/diode/badge.svg)](https://coveralls.io/r/vigetlabs/diode)
-
----
 
 ## Usage
 
