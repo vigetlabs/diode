@@ -35,7 +35,7 @@ module.exports = function(config) {
           {
             test    : /\.jsx*$/,
             exclude : /node_modules/,
-            loader  : '6to5?experimental&runtime&modules=common',
+            loader  : '6to5?experimental&modules=common',
           }
         ],
         postLoaders: [
