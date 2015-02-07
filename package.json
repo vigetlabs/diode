@@ -34,7 +34,7 @@
     "karma-firefox-launcher": "^0.1.4",
     "karma-mocha": "^0.1.10",
     "karma-nyan-reporter": "0.0.50",
-    "karma-sinon-chai": "^0.2.0",
+    "karma-sinon-chai": "^0.3.0",
     "karma-webpack": "^1.5.0",
     "webpack": "^1.5.3",
     "react": ">= 0.12.1"
