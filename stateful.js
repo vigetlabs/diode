@@ -1,29 +1,31 @@
-var Diode     = require('./diode');
-var invariant = require('./invariant');
+var Diode = require('./diode')
 
 var Stateful = {
 
   getInitialState: function() {
-    invariant(this.getState, "Stateful mixin requires `getState` implementation.");
-    return this.getState();
+    if (!this.getState) {
+      throw new Error("Stateful mixin requires `getState` implementation.")
+    }
+
+    return this.getState()
   },
 
   _updateState: function() {
-    this.setState(this.getState());
+    this.setState(this.getState())
   },
 
   componentDidMount: function() {
-    Diode.subscribe(this._updateState);
+    Diode.subscribe(this._updateState)
   },
 
   componentWillUnmount: function() {
-    Diode.unsubscribe(this._updateState);
+    Diode.unsubscribe(this._updateState)
   },
 
   componentWillReceiveProps: function() {
-    this._updateState();
+    this._updateState()
   }
 
-};
+}
 
 module.exports = Stateful

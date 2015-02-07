@@ -4,9 +4,8 @@
  * that state has changed.
  */
 
-var invariant  = require('./invariant')
 var _callbacks = []
-var _tick      = null;
+var _tick      = null
 
 /**
  * Callbacks are eventually executed, Diode does not promise
@@ -25,8 +24,6 @@ var Diode = {
    * Throws an error if the callback is not included in the Set.
    */
   unsubscribe: function(callback) {
-    invariant(_callbacks.indexOf(callback) > -1, 'Diode.unsubscribe() was asked to remove callback that it was not subscribed to.');
-
     _callbacks = _callbacks.filter(function(i) {
       return i !== callback
     });
@@ -36,10 +33,7 @@ var Diode = {
    * Given a CALLBACK function, add it to the Set of all callbacks.
    */
   subscribe: function(callback) {
-    var type = typeof callback;
-    invariant(type === 'function', 'Diode.subscribe() expects a function, instead it received a ' + type);
-
-    _callbacks = _callbacks.concat(callback);
+    _callbacks = _callbacks.concat(callback)
   },
 
   /**
