@@ -12,7 +12,12 @@ var _tick      = null
  * immediate consistency so that state propagation can be batched
  */
 var _flush = function() {
-  for (var i = 0, length = _callbacks.length; i < length; i++) {
+  /**
+   * Important: do not cache the length of _callbacks
+   * in the event a callback causes later subscriptions
+   * to disappear
+   */
+  for (var i = 0; i < _callbacks.length; i++) {
     _callbacks[i]()
   }
 }

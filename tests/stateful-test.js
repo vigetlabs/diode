@@ -7,7 +7,7 @@ describe('Stateful', function() {
     return React.createClass({
       mixins: [ require('stateful') ],
       getState() { return { state: 'new' } },
-      render() { return (<p>Hello</p>) }
+      render() { return (<p>{ 'Hello' }</p>) }
     })
   }
 
@@ -59,6 +59,20 @@ describe('Stateful', function() {
     spy.should.have.been.called
 
     spy.restore()
+  })
+
+  it ('throws an error if it the component does not have getState', function(done) {
+    var Component = React.createClass({
+      mixins: [ require('stateful') ],
+      render() { return (<p>{ 'Hello' }</p>) }
+    })
+
+    try {
+      Test.renderIntoDocument(<Component />)
+    } catch(x) {
+      x.should.be.instanceOf(Error)
+      done()
+    }
   })
 
 })

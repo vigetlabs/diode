@@ -14,7 +14,7 @@ module.exports = function(config) {
     reporters: [ 'nyan', 'coverage' ],
 
     preprocessors: {
-      './tests/*.js*': [ 'webpack' ],
+      './tests/*.js*': [ 'webpack' ]
     },
 
     coverageReporter: {
