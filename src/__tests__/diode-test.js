@@ -1,5 +1,6 @@
+var Diode = require('../diode')
+
 describe('Diode', function() {
-  var Diode = require('diode')
 
   it ('does not flush if there are no callbacks', function() {
     let spy = sinon.spy(window, 'requestAnimationFrame')

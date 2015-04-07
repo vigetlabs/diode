@@ -1,20 +1,23 @@
 module.exports = function(config) {
+
+  var isIntegration = process.env.CONTINUOUS_INTEGRATION === 'true'
+
   config.set({
 
-    browsers: [ process.env.CONTINUOUS_INTEGRATION === 'true' ? 'Firefox' : 'Chrome' ],
+    browsers: [ isIntegration ? 'Firefox' : 'Chrome' ],
 
-    singleRun: process.env.CONTINUOUS_INTEGRATION === 'true',
+    singleRun: isIntegration,
 
     frameworks: [ 'mocha', 'sinon-chai' ],
 
     files: [
-      './tests/*.js*'
+      'src/__tests__/*.js*'
     ],
 
     reporters: [ 'nyan', 'coverage' ],
 
     preprocessors: {
-      './tests/*.js*': [ 'webpack' ]
+      'src/__tests__/*.js*': [ 'webpack' ]
     },
 
     coverageReporter: {
@@ -41,7 +44,7 @@ module.exports = function(config) {
         postLoaders: [
           {
             test: /\.jsx*$/,
-            exclude: /(tests|node_modules)\//,
+            exclude: /(__tests__|node_modules)\//,
             loader: 'istanbul-instrumenter'
           }
         ]
@@ -51,5 +54,5 @@ module.exports = function(config) {
     webpackServer: {
       noInfo: true
     }
-  });
-};
+  })
+}

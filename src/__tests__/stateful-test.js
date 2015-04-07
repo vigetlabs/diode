@@ -1,11 +1,12 @@
-describe('Stateful', function() {
-  var Diode = require('diode')
-  var React = require('react/addons')
-  var Test  = React.addons.TestUtils
+var Diode    = require('../diode')
+var React    = require('react/addons')
+var Stateful = require('../stateful')
+var Test     = React.addons.TestUtils
 
+describe('Stateful', function() {
   var getComponent = function() {
     return React.createClass({
-      mixins: [ require('stateful') ],
+      mixins: [ Stateful ],
       getState() { return { state: 'new' } },
       render() { return (<p>{ 'Hello' }</p>) }
     })

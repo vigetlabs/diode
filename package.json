@@ -2,7 +2,7 @@
   "name": "diode",
   "version": "4.0.0",
   "description": "A simple, eventually consistent, state propagation tool for Flux/React apps",
-  "main": "diode.js",
+  "main": "src/diode.js",
   "scripts": {
     "test": "karma start",
     "coveralls": "CONTINUOUS_INTEGRATION=true npm test && coveralls < coverage/report-lcov/lcov.info"
