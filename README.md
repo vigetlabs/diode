@@ -13,29 +13,32 @@ takes advantage of
 to significantly simplify event subscription when propagating changes
 in the data layer.
 
-Diode has no dependencies.
+```javascript
+Diode.listen(callback)
+Diode.emit()
+```
 
 **Diode is an event emitter with one event**. By including the `Stateful`
 mixin, an expected `getState` method is called every time the Diode
 publishes a change.
 
-**Diode batches event subscriptions using `requestAnimationFrame`**. In
+**Diode can batch event subscriptions using `volley`**. In
 short, this means that sequential publications will be clumped:
 
 ```javascript
-Diode.subscribe(callback)
+Diode.listen(callback)
 
 for (var i = 1000; i > 0; i--) {
-  Diode.publish()
+  Diode.volley()
 }
 
 // callback will only fire once
 ```
 
-This means that state changes which would activate `Diode.publish`
-multiple times, such as an action which affects multiple data stores,
-will trigger once. This should improve efficiency and simplify actions
-such as merging records.
+This means that state changes which would activate multiple times,
+such as an action which affects multiple data stores, will trigger
+once. This should improve efficiency and simplify actions such as
+merging records.
 
 It is also quite small (see [API](#api)). We found ourselves building
 something similar to it on several projects and decided it was better
@@ -76,7 +79,7 @@ var _data = []
 
 MyStore.add = function(record) {
   _data = _data.concat(record)
-  Diode.publish()
+  Diode.volley()
 }
 ```
 
@@ -86,15 +89,17 @@ And that's it!
 
 ### Diode
 
-- `unsubscribe`: Remove a callback. If only using the `Stateful` mixin
+- `listen`: Remove a callback. If only using the `Stateful` mixin
   this probably never needs to be called
-- `subscribe`: Add a callback. If only using the `Stateful` mixin
+- `ignore`: Add a callback. If only using the `Stateful` mixin
   this probably never needs to be called
-- `publish`: Propagate a change. Call this whenever a data store of
+- `emit`: Propagate a change. Call this whenever a data store of
   some kind changes (leaning on smart `shouldComponentUpdate` methods
   within your React component tree)
+- `volley`: Propagate a change lazily.
 
 ### Stateful
 
 - `getState`: This method is called by `Stateful` whenever the `Diode`
-  executes `publish` to update the state of a component. **It is required.**
+  executes `emit` or `volley` to update the state of a component. **It
+  is required.**
