@@ -64,7 +64,7 @@ describe('Stateful', function() {
 
   it ('throws an error if it the component does not have getState', function(done) {
     var Component = React.createClass({
-      mixins: [ require('stateful') ],
+      mixins: [ Stateful ],
       render() { return (<p>{ 'Hello' }</p>) }
     })
 
