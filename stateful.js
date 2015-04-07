@@ -15,11 +15,11 @@ var Stateful = {
   },
 
   componentDidMount: function() {
-    Diode.subscribe(this._updateState)
+    Diode.listen(this._updateState)
   },
 
   componentWillUnmount: function() {
-    Diode.unsubscribe(this._updateState)
+    Diode.ignore(this._updateState)
   },
 
   componentWillReceiveProps: function() {

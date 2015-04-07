@@ -11,9 +11,9 @@ describe('Stateful', function() {
     })
   }
 
-  it ('subscribes to the diode when the component mounts', function() {
+  it ('listens to the diode when the component mounts', function() {
     var Component = getComponent()
-    var spy       = sinon.spy(Diode, 'subscribe')
+    var spy       = sinon.spy(Diode, 'listen')
 
     Test.renderIntoDocument(<Component />)
 
@@ -22,21 +22,21 @@ describe('Stateful', function() {
     spy.restore()
   })
 
-  it ('unsubscribes to the diode when the component mounts', function() {
+  it ('ignores the diode when the component mounts', function() {
     var Component = React.createClass({
       render() {
         return React.createElement(getComponent())
       }
     })
 
-    sinon.spy(Diode, 'unsubscribe')
+    sinon.spy(Diode, 'ignore')
 
     React.render(<Component />, document.body)
     React.render(<Component />, document.body)
 
-    Diode.unsubscribe.should.have.been.called
+    Diode.ignore.should.have.been.called
 
-    Diode.unsubscribe.restore()
+    Diode.ignore.restore()
   })
 
   it ('calls getState to update the state of the component', function() {

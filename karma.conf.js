@@ -35,13 +35,13 @@ module.exports = function(config) {
           {
             test    : /\.jsx*$/,
             exclude : /node_modules/,
-            loader  : '6to5?experimental&modules=common',
+            loader  : 'babel?stage=1'
           }
         ],
         postLoaders: [
           {
             test: /\.jsx*$/,
-            exclude: /(__tests__|node_modules)\//,
+            exclude: /(tests|node_modules)\//,
             loader: 'istanbul-instrumenter'
           }
         ]

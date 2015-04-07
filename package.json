@@ -1,6 +1,6 @@
 {
   "name": "diode",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "description": "A simple, eventually consistent, state propagation tool for Flux/React apps",
   "main": "diode.js",
   "scripts": {
@@ -23,20 +23,24 @@
   "bugs": "https://github.com/vigetlabs/diode/issues",
   "homepage": "https://github.com/vigetlabs/diode",
   "devDependencies": {
-    "6to5-loader": "^3.0.0",
+    "babel-core": "^5.x.x",
+    "babel-loader": "^5.x.x",
+    "chai": "^2.2.0",
     "coveralls": "^2.11.2",
     "istanbul": "^0.3.5",
     "istanbul-instrumenter-loader": "^0.1.2",
-    "karma": "^0.12.31",
+    "karma": "^0.12.32",
     "karma-chrome-launcher": "^0.1.7",
     "karma-cli": "0.0.4",
     "karma-coverage": "^0.2.7",
     "karma-firefox-launcher": "^0.1.4",
     "karma-mocha": "^0.1.10",
-    "karma-nyan-reporter": "0.0.50",
+    "karma-nyan-reporter": "0.0.60",
     "karma-sinon-chai": "^0.3.0",
     "karma-webpack": "^1.5.0",
-    "webpack": "^1.5.3",
-    "react": ">= 0.12.1"
+    "mocha": "^2.2.1",
+    "react": ">= 0.12.1",
+    "sinon": "^1.14.1",
+    "webpack": "^1.5.3"
   }
 }

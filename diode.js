@@ -4,53 +4,63 @@
  * that state has changed.
  */
 
-var _callbacks = []
-var _tick      = null
+function Diode(target) {
+  var _callbacks = []
+  var _tick      = null
 
-/**
- * Callbacks are eventually executed, Diode does not promise
- * immediate consistency so that state propagation can be batched
- */
-var _flush = function() {
+  target = target || {}
+
   /**
-   * Important: do not cache the length of _callbacks
-   * in the event a callback causes later subscriptions
-   * to disappear
+   * Callbacks are eventually executed, Diode does not promise
+   * immediate consistency so that state propagation can be batched
    */
-  for (var i = 0; i < _callbacks.length; i++) {
-    _callbacks[i]()
+  var _flush = function() {
+    /**
+     * Important: do not cache the length of _callbacks
+     * in the event a callback causes later subscriptions
+     * to disappear
+     */
+    for (var i = 0; i < _callbacks.length; i++) {
+      _callbacks[i]()
+    }
   }
-}
-
-var Diode = {
-
-  /**
-   * Given a CALLBACK function, remove it from the Set of callbacks.
-   * Throws an error if the callback is not included in the Set.
-   */
-  unsubscribe: function(callback) {
-    _callbacks = _callbacks.filter(function(i) {
-      return i !== callback
-    });
-  },
 
   /**
    * Given a CALLBACK function, add it to the Set of all callbacks.
    */
-  subscribe: function(callback) {
+  target.listen = function(callback) {
     _callbacks = _callbacks.concat(callback)
-  },
+  }
 
   /**
-   * Trigger every callback in the Set
+   * Given a CALLBACK function, remove it from the set of callbacks.
+   * Throws an error if the callback is not included in the Set.
    */
-  publish: function() {
+  target.ignore = function(callback) {
+    _callbacks = _callbacks.filter(function(i) {
+      return i !== callback
+    })
+  }
+
+  /**
+   * Immediately trigger every callback
+   */
+  target.emit = function() {
+    _flush()
+  }
+
+  /**
+   * Lazy trigger Trigger every callback
+   */
+  target.volley = function() {
     if (_callbacks.length > 0) {
       cancelAnimationFrame(_tick)
       _tick = requestAnimationFrame(_flush)
     }
   }
 
+  return target
 }
 
-module.exports = Diode
+module.exports = Diode()
+module.exports.decorate = Diode
