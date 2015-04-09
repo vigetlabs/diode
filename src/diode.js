@@ -53,7 +53,7 @@ function Diode(target) {
    * Lazy trigger Trigger every callback
    */
   target.volley = function() {
-    let args = arguments
+    var args = arguments
 
     if (_callbacks.length > 0) {
       cancelAnimationFrame(_tick)
