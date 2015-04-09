@@ -67,4 +67,15 @@ describe('Diode', function() {
     target.should.have.property('prop', 'test')
   })
 
+  it ('passes arguments to children', function(done) {
+    let target = Diode.decorate({ prop: 'test' })
+
+    target.listen(function(name) {
+      name.should.equal('Greg')
+      done()
+    })
+
+    target.emit('Greg')
+  })
+
 })

@@ -6,7 +6,7 @@
 
 function Diode(target) {
   var _callbacks = []
-  var _tick      = null
+  var _tick      = target
 
   target = target || {}
 
@@ -21,7 +21,7 @@ function Diode(target) {
      * to disappear
      */
     for (var i = 0; i < _callbacks.length; i++) {
-      _callbacks[i]()
+      _callbacks[i].apply(target, arguments)
     }
   }
 
@@ -46,16 +46,20 @@ function Diode(target) {
    * Immediately trigger every callback
    */
   target.emit = function() {
-    _flush()
+    _flush.apply(target, arguments)
   }
 
   /**
    * Lazy trigger Trigger every callback
    */
   target.volley = function() {
+    let args = arguments
+
     if (_callbacks.length > 0) {
       cancelAnimationFrame(_tick)
-      _tick = requestAnimationFrame(_flush)
+      _tick = requestAnimationFrame(function() {
+        _flush.apply(target, args)
+      })
     }
   }
 
