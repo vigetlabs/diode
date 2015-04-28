@@ -68,7 +68,7 @@ describe('Diode', function() {
   })
 
   it ('passes arguments to children', function(done) {
-    let target = Diode.decorate({ prop: 'test' })
+    let target = Diode.decorate({})
 
     target.listen(function(name) {
       name.should.equal('Greg')
@@ -78,4 +78,16 @@ describe('Diode', function() {
     target.emit('Greg')
   })
 
+  describe('chaining api', function() {
+
+    it ('returns to the target context', function() {
+      let target = Diode.decorate({})
+      let mock   = sinon.mock()
+
+      target.listen(mock).should.equal(target)
+      target.ignore(mock).should.equal(target)
+      target.emit().should.equal(target)
+      target.volley().should.equal(target)
+    })
+  })
 })

@@ -30,6 +30,8 @@ function Diode(target) {
    */
   target.listen = function(callback) {
     _callbacks = _callbacks.concat(callback)
+
+    return target
   }
 
   /**
@@ -40,6 +42,8 @@ function Diode(target) {
     _callbacks = _callbacks.filter(function(i) {
       return i !== callback
     })
+
+    return target
   }
 
   /**
@@ -47,6 +51,8 @@ function Diode(target) {
    */
   target.emit = function() {
     _flush.apply(target, arguments)
+
+    return target
   }
 
   /**
@@ -61,6 +67,8 @@ function Diode(target) {
         _flush.apply(target, args)
       })
     }
+
+    return target
   }
 
   return target
