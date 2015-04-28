@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.2.0
+
+- All Diode methods now return the target
+
 ## 4.1.0
 
 - `emit` now forwards all arguments to listeners
