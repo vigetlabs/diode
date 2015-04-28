@@ -2,7 +2,14 @@
 
 ## 4.2.0
 
-- All Diode methods now return the target
+All Diode methods now return the target. For example, if decorating an existing object:
+
+```javascript
+Diode.decorate(object)
+
+object.listen(callback)
+      .listen(anotherCallback)
+```
 
 ## 4.1.0
 
