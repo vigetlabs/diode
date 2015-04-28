@@ -4,7 +4,7 @@ module.exports = function(config) {
 
   config.set({
 
-    browsers: [ isIntegration ? 'Firefox' : 'Chrome' ],
+    browsers: [ 'Firefox' ],
 
     singleRun: isIntegration,
 
@@ -38,7 +38,7 @@ module.exports = function(config) {
           {
             test    : /\.jsx*$/,
             exclude : /node_modules/,
-            loader  : 'babel?stage=1'
+            loader  : 'babel?stage=1&loose'
           }
         ],
         postLoaders: [
