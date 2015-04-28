@@ -1,6 +1,6 @@
 {
   "name": "diode",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "description": "A simple, eventually consistent, state propagation tool for Flux/React apps",
   "main": "src/diode.js",
   "scripts": {
