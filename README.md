@@ -109,14 +109,10 @@ var myDiode = new Diode()
 
 ### Diode
 
-- `listen,subscribe`: Remove a callback. If only using the `Stateful` mixin
-  this probably never needs to be called
-- `ignore,unsubscribe`: Add a callback. If only using the `Stateful` mixin
-  this probably never needs to be called
-- `emit,publish`: Propagate a change. Call this whenever a data store of
-  some kind changes (leaning on smart `shouldComponentUpdate` methods
-  within your React component tree)
-- `volley`: Propagate a change lazily.
+- `listen,subscribe`: Add a subscription
+- `ignore,unsubscribe`: Remove a subscription
+- `emit,publish`: Trigger all subscriptions
+- `volley`: Trigger a change lazily, batched together
 
 ### Stateful
 
