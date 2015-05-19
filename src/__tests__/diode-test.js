@@ -2,6 +2,30 @@ var Diode = require('../diode')
 
 describe('Diode', function() {
 
+  function isDiode(object) {
+    let truth = new Diode()
+
+    for (let key in truth) {
+      object.should.have.property(key)
+    }
+  }
+
+  it ('is an event emitter itself', function() {
+    isDiode(Diode)
+  })
+
+  it ('is a decorator function', function() {
+    let emitter = Diode({ prop: 'yes' })
+
+    isDiode(emitter)
+
+    emitter.should.have.property('prop', 'yes')
+  })
+
+  it ('defaults to an empty object when decorating', function() {
+    isDiode(Diode())
+  })
+
   it ('does not flush if there are no callbacks', function() {
     let spy = sinon.spy(window, 'requestAnimationFrame')
 
@@ -88,6 +112,28 @@ describe('Diode', function() {
       target.ignore(mock).should.equal(target)
       target.emit().should.equal(target)
       target.volley().should.equal(target)
+    })
+  })
+
+  describe('instantiation', function() {
+    it ('can be called with the new operator', function() {
+      let target = new Diode()
+
+      target.should.have.property('listen')
+    })
+  })
+
+  describe('aliases', function() {
+    it ('aliases `listen` to `subscribe` callbacks', function() {
+      Diode.should.have.property('subscribe', Diode.listen)
+    })
+
+    it ('aliases `ignore` to `unsubscribe` callbacks', function() {
+      Diode.should.have.property('unsubscribe', Diode.ignore)
+    })
+
+    it ('aliases `emit` to `publish` callbacks', function() {
+      Diode.should.have.property('publish', Diode.emit)
     })
   })
 })

@@ -1,10 +1,10 @@
 {
   "name": "diode",
   "version": "4.2.0",
-  "description": "A simple, eventually consistent, state propagation tool for Flux/React apps",
+  "description": "A simple event emitter with tools for eventual consistency",
   "main": "src/diode.js",
   "scripts": {
-    "test": "karma start",
+    "test": "karma start --single-run",
     "coveralls": "CONTINUOUS_INTEGRATION=true npm test && coveralls < coverage/report-lcov/lcov.info"
   },
   "repository": {

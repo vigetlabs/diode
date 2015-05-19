@@ -7,20 +7,13 @@
 
 ---
 
-A simple, eventually consistent, state propagation tool for React. It
-takes advantage of
-[components that are pure](http://facebook.github.io/react/docs/pure-render-mixin.html)
-to significantly simplify event subscription when propagating changes
-in the data layer.
+A simple event emitter with tools for eventual consistency. Diode only
+has one event.
 
 ```javascript
 Diode.listen(callback)
 Diode.emit()
 ```
-
-**Diode is an event emitter with one event**. By including the `Stateful`
-mixin, an expected `getState` method is called every time the Diode
-publishes a change.
 
 **Diode can batch event subscriptions using `volley`**. In
 short, this means that sequential publications will be clumped:
@@ -45,6 +38,10 @@ something similar to it on several projects and decided it was better
 to keep it in one place.
 
 ## Usage
+
+For React projects, Diode includes a `Stateful` mixin, it expects a
+`getState` method that is called every time Diode publishes a
+change.
 
 First include the `Stateful` mixin into a component, and provide a
 `getState` method:
@@ -85,15 +82,38 @@ MyStore.add = function(record) {
 
 And that's it!
 
+## Diode as a decorator
+
+Diode is both an event emitter and a decorator that can add event
+subscription to another object:
+
+```javascript
+var MyData = Diode({
+  data: [],
+  add: function(record) {
+    this.data.push(record)
+    this.publish()
+  }
+})
+```
+
+## New instances of Diode
+
+Diode also supports the `new` operator:
+
+```javascript
+var myDiode = new Diode()
+```
+
 ## API
 
 ### Diode
 
-- `listen`: Remove a callback. If only using the `Stateful` mixin
+- `listen,subscribe`: Remove a callback. If only using the `Stateful` mixin
   this probably never needs to be called
-- `ignore`: Add a callback. If only using the `Stateful` mixin
+- `ignore,unsubscribe`: Add a callback. If only using the `Stateful` mixin
   this probably never needs to be called
-- `emit`: Propagate a change. Call this whenever a data store of
+- `emit,publish`: Propagate a change. Call this whenever a data store of
   some kind changes (leaning on smart `shouldComponentUpdate` methods
   within your React component tree)
 - `volley`: Propagate a change lazily.

@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.3.0
+
+- Added `subscribe` alias for `listen`
+- Added `unsubscribe` alias for `ignore`
+- Added `publish` alias for `emit`
+- Diode can be called with the `new` Operator
+- Diode can decorate objects as a function itself (in addition to decorate)
+
+```
+Compressed : 724 bytes
+Gzipped    : 389 bytes
+```
+
 ## 4.2.0
 
 All Diode methods now return the target. For example, if decorating an existing object:

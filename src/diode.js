@@ -8,7 +8,11 @@ function Diode(target) {
   var _callbacks = []
   var _tick      = target
 
-  target = target || {}
+  if (this instanceof Diode) {
+    target = this
+  } else {
+    target = target || {}
+  }
 
   /**
    * Callbacks are eventually executed, Diode does not promise
@@ -28,7 +32,7 @@ function Diode(target) {
   /**
    * Given a CALLBACK function, add it to the Set of all callbacks.
    */
-  target.listen = function(callback) {
+  target.listen = target.subscribe = function(callback) {
     _callbacks = _callbacks.concat(callback)
 
     return target
@@ -38,7 +42,7 @@ function Diode(target) {
    * Given a CALLBACK function, remove it from the set of callbacks.
    * Throws an error if the callback is not included in the Set.
    */
-  target.ignore = function(callback) {
+  target.ignore = target.unsubscribe = function(callback) {
     _callbacks = _callbacks.filter(function(i) {
       return i !== callback
     })
@@ -49,7 +53,7 @@ function Diode(target) {
   /**
    * Immediately trigger every callback
    */
-  target.emit = function() {
+  target.emit = target.publish = function() {
     _flush.apply(target, arguments)
 
     return target
@@ -74,5 +78,5 @@ function Diode(target) {
   return target
 }
 
-module.exports = Diode()
+module.exports = Diode(Diode)
 module.exports.decorate = Diode
