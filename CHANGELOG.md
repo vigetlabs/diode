@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.4.0
+
+- When executed continuously, `volley` will now leak out a change
+  event every 120 frames per second. This should better support
+  streaming change events for animation.
+
 ## 4.3.0
 
 - Added `subscribe` alias for `listen`
