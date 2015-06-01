@@ -6,6 +6,11 @@
   event every 120 frames per second. This should better support
   streaming change events for animation.
 
+```
+Compressed : 592 bytes
+Gzipped    : 348 bytes
+```
+
 ## 4.3.0
 
 - Added `subscribe` alias for `listen`
