@@ -5,6 +5,7 @@
   "main": "src/diode.js",
   "scripts": {
     "test": "karma start --single-run",
+    "test:watch": "karma start",
     "coveralls": "CONTINUOUS_INTEGRATION=true npm test && coveralls < coverage/report-lcov/lcov.info"
   },
   "repository": {

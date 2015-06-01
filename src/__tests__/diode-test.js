@@ -46,14 +46,31 @@ describe('Diode', function() {
 
     Diode.listen(stub)
 
-    for (var i = 1000; i > 0; i--) {
+    for (var i = 0; i <= 100; i++) {
+      Diode.volley(i)
+    }
+
+    setTimeout(function() {
+      stub.should.have.been.calledOnce
+      stub.should.have.been.calledWith(100)
+      done()
+    }, 50)
+  })
+
+  it ('allows high-frequency subscriptions to pass through cancellation', function(done) {
+    let stub = sinon.stub()
+    let time = Date.now()
+
+    Diode.listen(stub)
+
+    while (Date.now() - time < Diode.FRAMES * 2) {
       Diode.volley()
     }
 
-    requestAnimationFrame(() => {
-      stub.should.have.been.calledOnce
+    setTimeout(function() {
+      stub.should.have.been.calledTwice
       done()
-    })
+    }, 50)
   })
 
   it ('does not volley if no callbacks exist', function() {
@@ -82,12 +99,8 @@ describe('Diode', function() {
   it ('can decorate other objects', function() {
     let target = Diode.decorate({ prop: 'test' })
 
-    for (var i in Diode) {
-      if (i !== 'decorate') {
-        target.should.have.property(i)
-      }
-    }
-
+    target.should.have.property('publish')
+    target.should.have.property('subscribe')
     target.should.have.property('prop', 'test')
   })
 
