@@ -2,9 +2,9 @@
 
 ## 4.4.0
 
-- When executed continuously, `volley` will now leak out a change
-  event every 120 frames per second. This should better support
-  streaming change events for animation.
+- When executed continuously, at 120 frames per second, `volley` will
+  allow a change event to slip through every frame. This should better
+  support streaming change events for animation.
 
 ```
 Compressed : 592 bytes
