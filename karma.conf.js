@@ -4,7 +4,7 @@ module.exports = function(config) {
 
   config.set({
 
-    browsers: [ 'Firefox' ],
+    browsers: [ 'Chrome' ],
 
     singleRun: isIntegration,
 
@@ -17,7 +17,7 @@ module.exports = function(config) {
     reporters: [ 'nyan', 'coverage' ],
 
     preprocessors: {
-      'src/__tests__/*.js*': [ 'webpack' ]
+      'src/__tests__/*.js*': [ 'webpack', 'sourcemap' ]
     },
 
     coverageReporter: {
@@ -28,6 +28,8 @@ module.exports = function(config) {
     },
 
     webpack: {
+      devtool: 'inline-source-map',
+
       resolve: {
         extensions: ['', '.js', '.jsx'],
         modulesDirectories: [ 'web_modules', 'node_modules', __dirname ]
@@ -38,7 +40,7 @@ module.exports = function(config) {
           {
             test    : /\.jsx*$/,
             exclude : /node_modules/,
-            loader  : 'babel?stage=1&loose'
+            loader  : 'babel'
           }
         ],
         postLoaders: [

@@ -1,12 +1,13 @@
 {
   "name": "diode",
+  "private": true,
   "version": "4.4.0",
-  "description": "A simple event emitter with tools for eventual consistency",
+  "description": "A simple event emitter.",
   "main": "src/diode.js",
   "scripts": {
-    "test": "karma start --single-run",
-    "test:watch": "karma start",
-    "coveralls": "CONTINUOUS_INTEGRATION=true npm test && coveralls < coverage/report-lcov/lcov.info"
+    "test": "make test",
+    "test:watch": "make test-watch",
+    "coveralls": "make test-cov"
   },
   "repository": {
     "type": "git",
@@ -24,23 +25,25 @@
   "bugs": "https://github.com/vigetlabs/diode/issues",
   "homepage": "https://github.com/vigetlabs/diode",
   "devDependencies": {
-    "babel-core": "^5.x.x",
-    "babel-loader": "^5.x.x",
-    "chai": "^2.2.0",
-    "coveralls": "^2.11.2",
-    "istanbul": "^0.3.5",
-    "istanbul-instrumenter-loader": "^0.1.2",
-    "karma": "^0.12.32",
-    "karma-cli": "0.0.4",
-    "karma-coverage": "^0.3.1",
-    "karma-firefox-launcher": "^0.1.4",
-    "karma-mocha": "^0.1.10",
-    "karma-nyan-reporter": "0.0.60",
-    "karma-sinon-chai": "^0.3.0",
-    "karma-webpack": "^1.5.0",
-    "mocha": "^2.2.1",
+    "babel": "~5.6",
+    "babel-core": "~5",
+    "babel-loader": "~5",
+    "chai": "~3.0",
+    "coveralls": "~2.11",
+    "istanbul": "~0.3",
+    "istanbul-instrumenter-loader": "~0.1",
+    "karma": "~0.12",
+    "karma-chrome-launcher": "~0.2",
+    "karma-cli": "~0.1",
+    "karma-coverage": "~0.4",
+    "karma-mocha": "~0.2",
+    "karma-nyan-reporter": "~0.1",
+    "karma-sinon-chai": "~1.0",
+    "karma-sourcemap-loader": "~0.3",
+    "karma-webpack": "~1.5",
+    "mocha": "~2.2",
     "react": ">= 0.12.1",
-    "sinon": "^1.14.1",
-    "webpack": "^1.x.x"
+    "sinon": "~1.14",
+    "webpack": "~1.10"
   }
 }

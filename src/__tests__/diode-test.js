@@ -41,59 +41,14 @@ describe('Diode', function() {
     Diode.emit()
   })
 
-  it ('batches subscriptions on volley', function(done) {
-    let stub = sinon.stub()
-
-    Diode.listen(stub)
-
-    for (var i = 0; i <= 100; i++) {
-      Diode.volley(i)
-    }
-
-    setTimeout(function() {
-      stub.should.have.been.calledOnce
-      stub.should.have.been.calledWith(100)
-      done()
-    }, 50)
-  })
-
-  it ('allows high-frequency subscriptions to pass through cancellation', function(done) {
-    let stub = sinon.stub()
-    let time = Date.now()
-
-    Diode.listen(stub)
-
-    while (Date.now() - time < Diode.FRAMES * 2) {
-      Diode.volley()
-    }
-
-    setTimeout(function() {
-      stub.should.have.been.calledTwice
-      done()
-    }, 50)
-  })
-
-  it ('does not volley if no callbacks exist', function() {
-    let emitter = Diode.decorate({})
-    let spy = sinon.spy(window, 'requestAnimationFrame')
-
-    emitter.volley()
-
-    spy.should.not.have.been.called
-    spy.restore()
-  })
-
-  it ('can ignore callbacks', function(done) {
+  it ('can ignore callbacks', function() {
     let stub = sinon.stub()
 
     Diode.listen(stub)
     Diode.ignore(stub)
-    Diode.volley()
+    Diode.emit()
 
-    requestAnimationFrame(() => {
-      stub.should.not.have.been.called
-      done()
-    })
+    stub.should.not.have.been.called
   })
 
   it ('can decorate other objects', function() {
@@ -124,7 +79,6 @@ describe('Diode', function() {
       target.listen(mock).should.equal(target)
       target.ignore(mock).should.equal(target)
       target.emit().should.equal(target)
-      target.volley().should.equal(target)
     })
   })
 
