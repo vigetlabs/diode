@@ -7,31 +7,12 @@
 
 ---
 
-A simple event emitter with tools for eventual consistency. Diode only
-has one event.
+A dead simple event emitter. **Diode only has one event.**
 
 ```javascript
 Diode.listen(callback)
 Diode.emit()
 ```
-
-**Diode can batch event subscriptions using `volley`**. In
-short, this means that sequential publications will be clumped:
-
-```javascript
-Diode.listen(callback)
-
-for (var i = 1000; i > 0; i--) {
-  Diode.volley()
-}
-
-// callback will only fire once
-```
-
-This means that state changes which would activate multiple times,
-such as an action which affects multiple data stores, will trigger
-once. This should improve efficiency and simplify actions such as
-merging records.
 
 It is also quite small (see [API](#api)). We found ourselves building
 something similar to it on several projects and decided it was better
@@ -112,7 +93,6 @@ var myDiode = new Diode()
 - `listen,subscribe`: Add a subscription
 - `ignore,unsubscribe`: Remove a subscription
 - `emit,publish`: Trigger all subscriptions
-- `volley`: Trigger a change lazily, batched together
 
 ### Stateful
 
