@@ -41,6 +41,14 @@ describe('Diode', function() {
     Diode.emit()
   })
 
+  it ('throws an error if a non-function callback is provided', function() {
+    try {
+      Diode.listen(null)
+    } catch(x) {
+      x.should.be.instanceof(TypeError)
+    }
+  })
+
   it ('can ignore callbacks', function() {
     let stub = sinon.stub()
 

@@ -17,6 +17,10 @@ function Diode (target) {
    * Given a CALLBACK function, add it to the Set of all callbacks.
    */
   target.listen = target.subscribe = function (callback) {
+    if (typeof callback !== 'function') {
+      throw new TypeError('callback must be a function')
+    }
+
     _callbacks.push(callback)
 
     return target
