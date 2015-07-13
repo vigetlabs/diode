@@ -28,12 +28,14 @@ function Diode (target) {
 
   /**
    * Given a CALLBACK function, remove it from the set of callbacks.
-   * Throws an error if the callback is not included in the Set.
+   * Throws an error if the callback is not included in the set.
    */
   target.ignore = target.unsubscribe = function (callback) {
-    _callbacks = _callbacks.filter(function (i) {
-      return i !== callback
-    })
+    for (var i = 0, len = _callbacks.length; i < len; i++) {
+      if (_callbacks[i] === callback) {
+        _callbacks.splice(i, 1)
+      }
+    }
 
     return target
   }
