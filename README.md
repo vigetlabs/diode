@@ -97,5 +97,5 @@ var myDiode = new Diode()
 ### Stateful
 
 - `getState`: This method is called by `Stateful` whenever the `Diode`
-  executes `emit` or `volley` to update the state of a component. **It
+  executes `emit` to update the state of a component. **It
   is required.**
