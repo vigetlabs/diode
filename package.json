@@ -5,7 +5,9 @@
   "main": "src/diode.js",
   "scripts": {
     "test": "mocha -R dot",
-    "test:watch": "mocha -R dot -w"
+    "test:watch": "mocha -R dot -w",
+    "test:cov": "istanbul cover node_modules/.bin/_mocha -- -R dot",
+    "coveralls": "npm run test:cov && coveralls < coverage/lcov.info"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
   "bugs": "https://github.com/vigetlabs/diode/issues",
   "homepage": "https://github.com/vigetlabs/diode",
   "devDependencies": {
+    "istanbul": "0.3.19",
     "mocha": "2.3.2"
   }
 }
