@@ -1,63 +1,48 @@
 /**
- * The Diode emits a heartbeat whenever any store state has changed.
- * When Stores change, they can use this entity to broadcast
- * that state has changed.
+ * Event subscription for Microcosm
  */
 
-function Diode (target) {
-  var _callbacks = []
+var Diode = function (app) {
+  var callbacks = []
 
   if (this instanceof Diode) {
-    target = this
-  } else {
-    target = target || {}
+    app = this
+  } else if (arguments.length == 0){
+    return new Diode()
   }
 
   /**
    * Given a CALLBACK function, add it to the Set of all callbacks.
    */
-  target.listen = target.subscribe = function (callback) {
-    if (typeof callback !== 'function') {
-      throw new TypeError('callback must be a function')
-    }
-
-    _callbacks.push(callback)
-
-    return target
+  app.listen = app.subscribe = function (callback) {
+    callbacks.push(callback)
+    return app
   }
 
   /**
    * Given a CALLBACK function, remove it from the set of callbacks.
    * Throws an error if the callback is not included in the set.
    */
-  target.ignore = target.unsubscribe = function (callback) {
-    for (var i = 0, len = _callbacks.length; i < len; i++) {
-      if (_callbacks[i] === callback) {
-        _callbacks.splice(i, 1)
-      }
-    }
+  app.ignore = app.unsubscribe = function (unwanted) {
+    callbacks = callbacks.filter(function(entry) {
+      return entry !== unwanted
+    })
 
-    return target
+    return app
   }
 
   /**
    * Immediately trigger every callback
    */
-  target.emit = target.publish = function (...args) {
-    /**
-     * Important: do not cache the length of _callbacks
-     * in the event a callback causes later subscriptions
-     * to disappear
-     */
-    for (var i = 0; i < _callbacks.length; i++) {
-      _callbacks[i].apply(target, args)
+  app.emit = app.publish = function () {
+    for (var i = 0; i < callbacks.length; i++) {
+      callbacks[i].apply(app, arguments)
     }
 
-    return target
+    return app
   }
 
-  return target
+  return app
 }
 
 module.exports = Diode(Diode)
-module.exports.decorate = Diode

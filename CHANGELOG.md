@@ -1,5 +1,17 @@
 # Changelog
 
+## 6.0.0
+
+- Removed decorate (just use `Diode(entity)`)
+- Removed `<Stateful />` this mixin required the use of Diode as a
+  global which caused a lot of issues.
+- Made some internal changes for file savings
+
+## 5.0.0
+
+- Remove volley all together. It is great at first but then produces
+  difficult hard to reason about event subscription.
+
 ## 4.4.0
 
 - When executed continuously, at 120 frames per second, `volley` will
