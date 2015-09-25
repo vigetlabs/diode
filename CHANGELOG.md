@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.1.0
+
+- Add optional secondary `scope` argument to `listen`
+
 ## 6.0.0
 
 - Removed decorate (just use `Diode(entity)`)
