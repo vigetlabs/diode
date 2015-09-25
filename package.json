@@ -1,6 +1,6 @@
 {
   "name": "diode",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "description": "A simple event emitter.",
   "main": "src/diode.js",
   "scripts": {
