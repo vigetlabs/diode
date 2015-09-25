@@ -39,10 +39,39 @@ Diode also supports the `new` operator:
 var myDiode = new Diode()
 ```
 
+## Managing scope
+
+By providing a second argument to `listen`, callbacks will be executed
+within a given context:
+
+```javascript
+var emitter = new Diode()
+
+emitter.listen(function() {
+  assert.equal(this, 'custom context')
+}, 'custom context')
+
+emitter.emit()
+```
+
+
 ## API
 
-### Diode
+### `listen(callback, &scope)`
 
-- `listen,subscribe`: Add a subscription
-- `ignore,unsubscribe`: Remove a subscription
-- `emit,publish`: Trigger all subscriptions
+Add a callback. If a second argument is provided, the callback will be
+executed within that context.
+
+Alias: `subscribe`.
+
+### `ignore(callback)`
+
+Remove a callback.
+
+Alias: `unsubscribe`.
+
+### `emit(...arguments)`
+
+Trigger all subscriptions.
+
+Alias: 'publish'

@@ -84,6 +84,30 @@ describe('Diode', function() {
     })
   })
 
+  describe('scope', function() {
+    it ('if not specified, it calls within the scope of the instance', function(done) {
+      var target = new Diode()
+
+      target.listen(function() {
+        assert.equal(this, target)
+        done()
+      })
+
+      target.emit()
+    })
+
+    it ('listeners can be called within an optional different scope', function(done) {
+      var target = new Diode()
+
+      target.listen(function() {
+        assert.equal(this, 'test')
+        done()
+      }, 'test')
+
+      target.emit()
+    })
+  })
+
   describe('aliases', function() {
     it ('aliases `listen` to `subscribe` callbacks', function() {
       assert.equal(Diode.subscribe, Diode.listen)

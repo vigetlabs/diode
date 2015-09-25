@@ -14,8 +14,8 @@ var Diode = function (app) {
   /**
    * Given a CALLBACK function, add it to the Set of all callbacks.
    */
-  app.listen = app.subscribe = function (callback) {
-    callbacks.push(callback)
+  app.listen = app.subscribe = function (callback, scope) {
+    callbacks.push({ callback: callback, scope: scope || app })
     return app
   }
 
@@ -25,7 +25,7 @@ var Diode = function (app) {
    */
   app.ignore = app.unsubscribe = function (unwanted) {
     callbacks = callbacks.filter(function(entry) {
-      return entry !== unwanted
+      return entry.callback !== unwanted
     })
 
     return app
@@ -36,7 +36,7 @@ var Diode = function (app) {
    */
   app.emit = app.publish = function () {
     for (var i = 0; i < callbacks.length; i++) {
-      callbacks[i].apply(app, arguments)
+      callbacks[i].callback.apply(callbacks[i].scope, arguments)
     }
 
     return app
