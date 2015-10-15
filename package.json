@@ -3,7 +3,7 @@
   "version": "6.2.0",
   "description": "A simple event emitter.",
   "main": "dist/diode.js",
-  "js:next": "src/diode.js",
+  "jsnext:main": "src/diode.js",
   "scripts": {
     "prepublish": "rollupbabel --format cjs src/diode.js -o dist/diode.js",
     "test": "mocha -R dot --compilers js:babel/register",
