@@ -45,4 +45,4 @@ var Diode = function (app) {
   return app
 }
 
-module.exports = Diode(Diode)
+export default Diode(Diode)
