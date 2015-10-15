@@ -2,11 +2,13 @@
   "name": "diode",
   "version": "6.1.0",
   "description": "A simple event emitter.",
-  "main": "src/diode.js",
+  "main": "dist/diode.js",
+  "js:next": "src/diode.js",
   "scripts": {
-    "test": "mocha -R dot",
-    "test:watch": "mocha -R dot -w",
-    "test:cov": "istanbul cover node_modules/.bin/_mocha -- -R dot",
+    "prepublish": "rollupbabel --format cjs src/diode.js -o dist/diode.js",
+    "test": "mocha -R dot --compilers js:babel/register",
+    "test:watch": "mocha -R dot --compilers js:babel/register",
+    "test:cov": "babel-node $(npm bin)/istanbul cover $(npm bin)/_mocha -- --recursive",
     "coveralls": "npm run test:cov && coveralls < coverage/lcov.info"
   },
   "repository": {
@@ -25,7 +27,10 @@
   "bugs": "https://github.com/vigetlabs/diode/issues",
   "homepage": "https://github.com/vigetlabs/diode",
   "devDependencies": {
+    "babel": "5.8.23",
+    "babel-core": "5.8.25",
     "istanbul": "0.3.19",
-    "mocha": "2.3.2"
+    "mocha": "2.3.2",
+    "rollup-babel": "0.6.0"
   }
 }
