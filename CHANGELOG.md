@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.2.3
+
+- Fixed strange namespace error by only defining Diode as a function name
+
 ## 6.1.0
 
 - Add optional secondary `scope` argument to `listen`
