@@ -2,7 +2,7 @@
  * Event subscription for Microcosm
  */
 
-var Diode = function (app) {
+function Diode (app) {
   var callbacks = []
 
   if (this instanceof Diode) {
