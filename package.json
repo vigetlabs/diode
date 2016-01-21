@@ -1,6 +1,6 @@
 {
   "name": "diode",
-  "version": "6.2.2",
+  "version": "6.2.3",
   "description": "A simple event emitter.",
   "main": "dist/diode.js",
   "jsnext:main": "src/diode.js",
