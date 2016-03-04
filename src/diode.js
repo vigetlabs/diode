@@ -3,13 +3,14 @@
  */
 
 function Diode (app) {
-  var callbacks = []
 
   if (this instanceof Diode) {
     app = this
   } else if (arguments.length == 0){
     return new Diode()
   }
+
+  var callbacks = []
 
   /**
    * Given a CALLBACK function, add it to the Set of all callbacks.
@@ -35,7 +36,7 @@ function Diode (app) {
    * Immediately trigger every callback
    */
   app.emit = app.publish = function () {
-    for (var i = 0; i < callbacks.length; i++) {
+    for (var i = 0, size = callbacks.length; i < size; i++) {
       callbacks[i].callback.apply(callbacks[i].scope, arguments)
     }
 
@@ -45,4 +46,4 @@ function Diode (app) {
   return app
 }
 
-export default Diode(Diode)
+module.exports = Diode(Diode)

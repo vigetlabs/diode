@@ -2,35 +2,26 @@
   "name": "diode",
   "version": "6.2.3",
   "description": "A simple event emitter.",
-  "main": "dist/diode.js",
-  "jsnext:main": "src/diode.js",
+  "main": "src/diode.js",
   "scripts": {
-    "prepublish": "rollupbabel --format cjs src/diode.js -o dist/diode.js",
-    "test": "mocha -R dot --compilers js:babel/register",
-    "test:watch": "mocha -R dot --compilers js:babel/register",
-    "test:cov": "babel-node $(npm bin)/istanbul cover $(npm bin)/_mocha -- --recursive",
-    "coveralls": "npm run test:cov && coveralls < coverage/lcov.info"
+    "test": "mocha -R dot",
+    "test:watch": "mocha -R dot",
+    "test:cov": "$(npm bin)/istanbul cover $(npm bin)/_mocha -- --recursive",
+    "coveralls": "npm run test:cov && coveralls < coverage/lcov.info",
+    "bench": "node --expose-gc --trace_deopt benchmarks/emit-performance"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/vigetlabs/diode.git"
   },
   "keywords": [],
-  "contributors": [
-    {
-      "name": "Nate Hunzaker",
-      "email": "nate.hunzaker@viget.com",
-      "url": "http://viget.com"
-    }
-  ],
+  "contributors": [],
   "license": "MIT",
   "bugs": "https://github.com/vigetlabs/diode/issues",
   "homepage": "https://github.com/vigetlabs/diode",
   "devDependencies": {
-    "babel": "5.8.23",
-    "babel-core": "5.8.25",
     "istanbul": "0.3.19",
-    "mocha": "2.3.2",
-    "rollup-babel": "0.6.0"
+    "microtime": "2.0.0",
+    "mocha": "2.3.2"
   }
 }
