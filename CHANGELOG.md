@@ -1,5 +1,10 @@
 # Changelog
 
+## 6.3.0
+
+- Removed js:next field. Without any ES6 and one single module there
+  is no benefit.
+
 ## 6.2.3
 
 - Fixed strange namespace error by only defining Diode as a function name
