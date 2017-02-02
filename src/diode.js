@@ -25,9 +25,9 @@ function Diode (app) {
    * Throws an error if the callback is not included in the set.
    */
   app.ignore = app.unsubscribe = function (callback, scope) {
-    let hasScope = arguments.length > 1
+    var hasScope = arguments.length > 1
 
-    let i = 0
+    var i = 0
     while (i < callbacks.length) {
       var cb = callbacks[i]
 
