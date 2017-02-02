@@ -1,5 +1,12 @@
 # Changelog
 
+## 6.3.1
+
+- Fixed issue where subscriptions removed during other callbacks would
+  invoke missing handler
+- Fixed issue where removing a subscription with a different scope
+  would remove others
+
 ## 6.3.0
 
 - Removed js:next field. Without any ES6 and one single module there

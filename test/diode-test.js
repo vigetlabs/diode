@@ -40,6 +40,39 @@ describe('Diode', function() {
     emitter.emit()
   })
 
+  it ('can handles cases where a callback is removed from a subscription', function() {
+    var emitter = new Diode()
+
+    var one = function () {
+      emitter.ignore(two)
+    }
+
+    var two = function () {}
+
+    emitter.listen(one)
+    emitter.listen(two)
+
+    emitter.emit()
+  })
+
+  it ('does not remove the same handler with different scopes', function() {
+    var emitter = new Diode()
+    var calls = 0
+
+    var increment = function () {
+      calls += 1
+    }
+
+    emitter.listen(increment, 'one')
+    emitter.listen(increment, 'two')
+
+    emitter.ignore(increment, 'two')
+
+    emitter.emit()
+
+    assert.equal(calls, 1)
+  })
+
   it ('can subscribe callbacks', function(done) {
     Diode.listen(done)
     Diode.emit()
@@ -107,6 +140,7 @@ describe('Diode', function() {
       target.emit()
     })
   })
+
 
   describe('aliases', function() {
     it ('aliases `listen` to `subscribe` callbacks', function() {

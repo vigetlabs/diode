@@ -24,10 +24,20 @@ function Diode (app) {
    * Given a CALLBACK function, remove it from the set of callbacks.
    * Throws an error if the callback is not included in the set.
    */
-  app.ignore = app.unsubscribe = function (unwanted) {
-    callbacks = callbacks.filter(function(entry) {
-      return entry.callback !== unwanted
-    })
+  app.ignore = app.unsubscribe = function (callback, scope) {
+    let hasScope = arguments.length > 1
+
+    let i = 0
+    while (i < callbacks.length) {
+      var cb = callbacks[i]
+
+      if (cb.callback === callback && (!hasScope || cb.scope === scope)) {
+        callbacks.splice(i, 1)
+        continue
+      }
+
+      i += 1
+    }
 
     return app
   }
@@ -36,7 +46,7 @@ function Diode (app) {
    * Immediately trigger every callback
    */
   app.emit = app.publish = function () {
-    for (var i = 0, size = callbacks.length; i < size; i++) {
+    for (var i = 0; i < callbacks.length; i++) {
       callbacks[i].callback.apply(callbacks[i].scope, arguments)
     }
 
