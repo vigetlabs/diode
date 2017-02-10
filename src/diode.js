@@ -47,7 +47,9 @@ function Diode (app) {
    */
   app.emit = app.publish = function () {
     for (var i = 0; i < callbacks.length; i++) {
-      callbacks[i].callback.apply(callbacks[i].scope, arguments)
+      if (callbacks[i]) {
+        callbacks[i].callback.apply(callbacks[i].scope, arguments)
+      }
     }
 
     return app

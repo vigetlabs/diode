@@ -20,8 +20,8 @@
   "bugs": "https://github.com/vigetlabs/diode/issues",
   "homepage": "https://github.com/vigetlabs/diode",
   "devDependencies": {
-    "istanbul": "0.3.19",
-    "microtime": "2.0.0",
-    "mocha": "2.3.2"
+    "istanbul": "0.4.5",
+    "microtime": "2.1.2",
+    "mocha": "3.2.0"
   }
 }
